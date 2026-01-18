@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeLingo - Bridge the Generational Gap</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&family=Passero+One&display=swap" rel="stylesheet">
+ </head>
+<body>
+  <header class="topbar">
+    <div class="brand" onclick="showPage('homePage')" style="cursor:pointer;">
+      <div class="brandText">
+        <h1>VibeLingo</h1>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <!-- Streak badge -->
+      <div class="streakBadge">
+        <div class="streakText">
+          <div class="streakLabel">Streak</div>
+          <div class="streakDays">Days: <b id="streakCount">0</b></div>
+        </div>
+        <img src="No-aura.png" alt="Streak Badge" class="streakBadgeImage">
+      </div>
+
+      <!-- Profile button -->
+      <button class="profile-button" onclick="showPage('detailsPage')">
+        Profile
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+      <div class="container">
+        <h2>Learn the language<br>of the Internet!</h2>
+        <p class="subtitle">So you don't sound <span class="cooked-word"><i>COOKED</i><span class="cooked-arrow">→ Cooked: Bad/Lost hope/ Done for</span></span></p>
+        
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="showPage('searchPage')">
+            🔄 Slang Translator
+          </button>
+          <button class="btn btn-secondary" onclick="showPage('quizPage')">
+            📝 Test Yourself
+          </button>
+          <button class="btn btn-tertiary" onclick="showPage('learnPage')">
+            📚 Learn More
+          </button>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Modern Slang</h3>
+            <p>Explore current slang terms and their meanings</p>
+          </div>
+          <div class="feature-card">
+            <h3>Context Examples</h3>
+            <p>See how slang is used in real conversations</p>
+          </div>
+          <div class="feature-card">
+            <h3>Generational Bridge</h3>
+            <p>Understand terms across different age groups</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Page -->
+    <div id="searchPage" class="page">
+      <div class="container">
+        <h2 class="search-title">Confused about what Gen-Z and Gen-Alphas are saying?</h2>
+        <img src="mascot.png" alt="Placeholder" class="translator-image">
+        <div class="search-box">
+          <input type="text" id="slangSearch" placeholder="Ask away" onkeyup="handleSearch(event)">
+          <button class="btn btn-primary" onclick="searchSlang()">🔍</button>
+        </div>
+        <div id="searchResults" class="results"></div>
+      </div>
+    </div>
+
+    <!-- Quiz Page -->
+    <div id="quizPage" class="page">
+      <div class="container quiz-page-container">
+        <h2>Test Your Knowledge</h2>
+        <p class="quiz-subtitle">Remember, you're speaking to Gen-Zs and Gen-Alphas :)</p>
+        <div class="quiz-layout">
+          <!-- Sidebar for Question Progress -->
+          <div id="quizSidebar" class="quiz-sidebar">
+            <h3>Progress</h3>
+            <div id="quizProgressList" class="quiz-progress-list"></div>
+          </div>
+          
+          <!-- Main Quiz Content -->
+          <div class="quiz-main-content">
+            <div id="quizContainer">
+              <div class="quiz-instruction">
+                <p>Ready to test your Vibe Slang knowledge? 🚀</p>
+                <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">Quiz Set: <span id="quizSetNumber">1</span> of 3</p>
+                <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+              </div>
+            </div>
+            <div id="quizScoreTracker" class="quiz-score-tracker"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learn Page -->
+    <div id="learnPage" class="page">
+      <div class="container">
+        <h2>Learn Slang Terms</h2>
+        <div id="learnContent" class="learn-grid">
+          <div class="slang-card" onclick="showSlangDetail('mid')">
+            <h3>Mid</h3>
+            <p>Mediocre or average</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('slay')">
+            <h3>Slay</h3>
+            <p>To do something exceptionally well</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('bussin\'')">
+            <h3>Bussin'</h3>
+            <p>Really good, often referring to food</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('cooking')">
+            <h3>Cooking/Cooked</h3>
+            <p>Is doing so well or is done for</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('aura farm')">
+            <h3>Aura Farm</h3>
+            <p>Someone's vibe or presence</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('sigma')">
+            <h3>Sigma</h3>
+            <p>An independent, lone-wolf type</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('skibidi')">
+            <h3>Skibidi</h3>
+            <p>Cool, strange, or just weird</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('sending me')">
+            <h3>Sending Me</h3>
+            <p>Hilarious or overwhelming reaction</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('cap')">
+            <h3>Cap</h3>
+            <p>A lie or not telling the truth</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('no cap')">
+            <h3>No Cap</h3>
+            <p>No lie, for real</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('rizz')">
+            <h3>Rizz</h3>
+            <p>Charisma, skill in flirting</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('mewing')">
+            <h3>Mewing</h3>
+            <p>Looking good or having a defined jawline</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('touch grass')">
+            <h3>Touch Grass</h3>
+            <p>Go outside, you're too online</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('glaze')">
+            <h3>Glaze</h3>
+            <p>Giving excessive, cringey praise</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('delulu')">
+            <h3>Delulu</h3>
+            <p>Delusional or unrealistic</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('bet')">
+            <h3>Bet</h3>
+            <p>Agreement or "okay"</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('ghosting')">
+            <h3>Ghosting</h3>
+            <p>Abruptly ending communication</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('goat')">
+            <h3>Goat</h3>
+            <p>Greatest of All Time</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('drip')">
+            <h3>Drip</h3>
+            <p>Cool style or fashionable outfit</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('ick')">
+            <h3>Ick</h3>
+            <p>A feeling of sudden repulsion</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('opp')">
+            <h3>Opp</h3>
+            <p>Opponents or enemies</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('spill the tea')">
+            <h3>Spill the Tea</h3>
+            <p>Share or listen to gossip</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('sus')">
+            <h3>Sus</h3>
+            <p>Suspicious or suspect</p>
+          </div>
+          <div class="slang-card" onclick="showSlangDetail('big w/l')">
+            <h3>Big W/L</h3>
+            <p>Win or Loss</p>
+          </div>
+        </div>
+        <div id="slangDetail" class="slang-detail"></div>
+      </div>
+    </div>
+
+    <!-- Details Page -->
+    <div id="detailsPage" class="page">
+      <div class="container">
+        <h2>My profile</h2>
+        <div class="profile-divider"></div>
+        
+        <!-- Profile Section -->
+        <div class="profile-section">
+          <div class="profile-picture">
+            <img src="pfp.jpg" alt="Profile Picture" class="profile-img">
+          </div>
+          <div class="profile-info">
+            <div class="profile-greeting">HEY <span id="profileNameGreeting">CIXSEVAN</span>!</div>
+            <div class="profile-details">
+              <div class="profile-row">
+                <span class="profile-label">User ID</span>
+                <span class="profile-value">006767</span>
+              </div>
+              <div class="profile-row">
+                <span class="profile-label">Email</span>
+                <span class="profile-value">cixsevan@gmail.com</span>
+              </div>
+              <div class="profile-row">
+                <span class="profile-label">Streak Badge</span>
+                <span class="profile-value">No-AuraStreak</span>
+              </div>
+              <div class="profile-row">
+                <span class="profile-label">Joined on</span>
+                <span class="profile-value">17/01/2026</span>
+              </div>
+            </div>
+            <button class="edit-button">Edit</button>
+          </div>
+        </div>
+
+        <!-- Streak Badges Section -->
+        <div class="streak-badges-section">
+          <h3>Don't be a Boomer - Maintain your Streak!</h3>
+          <p class="badges-subtitle">Badges unlock as your streak increases</p>
+          
+          <div class="badges-grid">
+            <div class="badge-item">
+              <div class="badge-title">AlphaStreak</div>
+              <div class="badge-subtitle">Visit everyday and keep it Alpha!</div>
+              <div class="badge-image-container">
+                <img src="Alpha.png" alt="Streak Badge 1" class="badge-image">
+              </div>
+            </div>
+            
+            <div class="badge-item">
+              <div class="badge-title">SigmaStreak</div>
+              <div class="badge-subtitle">Missed out on 2 days but you're still good!</div>
+              <div class="badge-image-container">
+                <img src="Sigma.png" alt="Streak Badge 2" class="badge-image">
+              </div>
+            </div>
+            
+            <div class="badge-item">
+              <div class="badge-title">MidStreak</div>
+              <div class="badge-subtitle">Missed 5 days but i guess you're alright...</div>
+              <div class="badge-image-container">
+                <img src="Mid.png" alt="Streak Badge 3" class="badge-image">
+              </div>
+            </div>
+            
+            <div class="badge-item">
+              <div class="badge-title">No-AuraStreak</div>
+              <div class="badge-subtitle">Didn't come to us for a whole week?!!!</div>
+              <div class="badge-image-container">
+                <img src="No-aura.png" alt="Streak Badge 4" class="badge-image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
